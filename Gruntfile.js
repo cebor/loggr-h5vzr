@@ -195,7 +195,7 @@ module.exports = function (grunt) {
           'react-sortable-mixin.js'
         ],
         ignorePath:  /\.\.\//,
-        fileTypes:{
+        fileTypes: {
           js: {
             block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
               detect: {
