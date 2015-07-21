@@ -23,7 +23,7 @@ angular.module('loggrioApp')
     this.errors = {};
 
     this.login = function () {
-      Customer.login(self.loginCredentials, function() {
+      Customer.login(self.loginCredentials, function () {
         var next = $location.nextAfterLogin || '/';
         $location.nextAfterLogin = null;
         $location.path(next);
@@ -38,12 +38,12 @@ angular.module('loggrioApp')
         self.retypePassword = '';
         self.login();
       }, function () {
-        self.errors.loginFailed = true;
+        self.errors.registerFailed = true;
       });
     };
 
     this.registerToggle = function () {
-      self.errors = {};
+      self.errors = {}; // reset errors
       self.registerToggled = !self.registerToggled;
     };
 

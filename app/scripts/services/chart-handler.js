@@ -26,11 +26,12 @@ angular.module('loggrioApp')
     this.initialize = function() {
       self.stopReload();
       self.customerId = Customer.getCurrentId();
-      self.charts.splice(0,self.charts.length);
-      self.chartConfigs.splice(0,self.chartConfigs.length);
-      self.averageChartConfigs.splice(0,self.averageChartConfigs.length);
-      self.sensors.splice(0,self.sensors.length);
-      self.sensorsInUse.splice(0,self.sensorsInUse.length);
+      // TODO: ???? SPLICE ????
+      self.charts.splice(0, self.charts.length);
+      self.chartConfigs.splice(0, self.chartConfigs.length);
+      self.averageChartConfigs.splice(0, self.averageChartConfigs.length);
+      self.sensors.splice(0, self.sensors.length);
+      self.sensorsInUse.splice(0, self.sensorsInUse.length);
     };
 
     this.stopReload = function (){
