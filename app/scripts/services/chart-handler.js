@@ -8,7 +8,7 @@
  * Service in the loggrioApp.
  */
 angular.module('loggrioApp')
-  .service('chartHandler', function ($interval, $timeout, Customer, notify, util, zoom, chartConfig, POLLING_INTERVAL) {
+  .service('chartHandler', function ($interval, Customer, notify, util, zoom, chartConfig, POLLING_INTERVAL) {
 
     var self = this;
 
@@ -104,7 +104,7 @@ angular.module('loggrioApp')
                         if (shift) {
                           zoom.shift(chart, value[0]);
                         }
-                        $timeout(chart.series[0].addPoint(value, true, false), 1000);
+                        chart.series[0].addPoint(value, true, false);
                       });
                     }
 

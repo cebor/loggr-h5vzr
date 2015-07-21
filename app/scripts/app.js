@@ -41,9 +41,9 @@ angular
 
     LoopBackResourceProvider.setUrlBase(API);
 
-    $httpProvider.interceptors.push(function($q, $location, LoopBackAuth) {
+    $httpProvider.interceptors.push(function ($q, $location, LoopBackAuth) {
       return {
-        responseError: function(rejection) {
+        responseError: function (rejection) {
           if (rejection.status === 401) {
             //Now clearing the loopback values from client browser for safe logout...
             LoopBackAuth.clearUser();
