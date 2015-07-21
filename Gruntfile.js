@@ -181,11 +181,19 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
+        exclude: [
+          'knockout-sortable.js',
+          'react-sortable-mixin.js'
+        ],
         ignorePath:  /\.\.\//
       },
       test: {
         devDependencies: true,
         src: '<%= karma.unit.configFile %>',
+        exclude: [
+          'knockout-sortable.js',
+          'react-sortable-mixin.js'
+        ],
         ignorePath:  /\.\.\//,
         fileTypes:{
           js: {
