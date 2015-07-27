@@ -13,14 +13,14 @@ angular.module('loggrioApp')
       scope: {
         otherModelValue: '=matchTo'
       },
-      link: function(scope, element, attributes, ngModel) {
+      link: function(scope, element, attributes, ngModelCtrl) {
 
-        ngModel.$validators.matchTo = function(modelValue) {
+        ngModelCtrl.$validators.matchTo = function(modelValue) {
           return modelValue === scope.otherModelValue;
         };
 
         scope.$watch('otherModelValue', function() {
-          ngModel.$validate();
+          ngModelCtrl.$validate();
         });
       }
     };
