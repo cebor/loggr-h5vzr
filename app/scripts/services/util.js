@@ -10,6 +10,8 @@
 angular.module('loggrioApp')
   .service('util', function () {
 
+    var WEEK = 60 * 60 * 24 * 7 * 1000;
+
     function getWeekDay(weekDay) {
       switch (weekDay) {
           case 0:
@@ -54,9 +56,7 @@ angular.module('loggrioApp')
         }
       };
 
-      var oneWeekAgo = new Date();
-      oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-      oneWeekAgo = oneWeekAgo.getTime();
+      var oneWeekAgo = Date.parse(meterings[meterings.length - 1].time) - WEEK;
       var counter = 0;
 
       angular.forEach(meterings, function (metering) {
@@ -78,7 +78,7 @@ angular.module('loggrioApp')
             data.averageWeek.values.push(value);
           // else sum up average
           } else {
-            counter += 1;
+            counter++;
             var lastValue = data.averageWeek.values[length - 1];
             data.averageWeek.values[length - 1] = round((lastValue * counter + value) / (counter + 1));
           }
@@ -91,13 +91,14 @@ angular.module('loggrioApp')
     this.sensorIsInUse = function (sensor) {
       var position = -1; // not in Use
       var viewConfig = JSON.parse(localStorage.getItem('viewConfig'));
-      if(viewConfig){
-        angular.forEach(viewConfig.sensorsInUse, function(sensorInUse, index){
-          if(sensor.id === sensorInUse.id){
+      if (viewConfig) {
+        angular.forEach(viewConfig.sensorsInUse, function (sensorInUse, index) {
+          if (sensor.id === sensorInUse.id) {
             position = index;
           }
         });
-      } else { // viewConfig non existing
+      // viewConfig non existing
+      } else {
         position = -2;
       }
       return position;
@@ -105,10 +106,10 @@ angular.module('loggrioApp')
 
     this.isDisconnected = function (lastTime) {
       // TODO: move to config file
-      var delay = 120000;
+      var DELAY = 120000;
       var nowTime = Date.now();
 
-      return (nowTime - Date.parse(lastTime)) > delay;
+      return (nowTime - Date.parse(lastTime)) > DELAY;
     };
 
   });
