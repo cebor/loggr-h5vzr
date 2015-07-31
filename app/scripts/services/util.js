@@ -10,8 +10,6 @@
 angular.module('loggrioApp')
   .service('util', function () {
 
-    var WEEK = 60 * 60 * 24 * 7 * 1000;
-
     function getWeekDay(weekDay) {
       switch (weekDay) {
           case 0:
@@ -56,7 +54,15 @@ angular.module('loggrioApp')
         }
       };
 
-      var oneWeekAgo = Date.parse(meterings[meterings.length - 1].time) - WEEK;
+      // get date from last metering
+      var oneWeekAgo = new Date(meterings[meterings.length - 1].time);
+      // eleminate time to 00:00:00 (remove actual day)
+      oneWeekAgo.setHours(0,0,0,0);
+      // get back additianl 6 days to get correct week cycle
+      oneWeekAgo.setDate(oneWeekAgo.getDate() - 6);
+      // get time as timestamp
+      oneWeekAgo = oneWeekAgo.getTime();
+
       var counter = 0;
 
       angular.forEach(meterings, function (metering) {
