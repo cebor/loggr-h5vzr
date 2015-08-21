@@ -8,14 +8,10 @@
  * Service in the loggrioApp.
  */
 angular.module('loggrioApp')
-  .service('chartMenu', function () {
+  .service('chartMenu', function ($filter) {
 
     function getDateStamp() {
-      var date = new Date();
-      var day = date.getDate();
-      var month = parseInt(date.getMonth()) + 1; // <- crazy mf!
-      var year = date.getFullYear();
-      return day + '.' + month + '.' + year;
+      return $filter('date')(new Date(), 'yyyyMMdd_HHmm');
     }
 
     this.contextMenu = function (charts) {
