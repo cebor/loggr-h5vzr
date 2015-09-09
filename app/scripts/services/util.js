@@ -12,22 +12,22 @@ angular.module('loggrioApp')
 
     function getWeekDay(weekDay) {
       switch (weekDay) {
-          case 0:
-            return 'Sonntag';
-          case 1:
-            return 'Montag';
-          case 2:
-            return 'Dienstag';
-          case 3:
-            return 'Mittwoch';
-          case 4:
-            return 'Donnerstag';
-          case 5:
-            return 'Freitag';
-          case 6:
-            return 'Samstag';
-          default:
-            return 'Falscher Tag';
+        case 0:
+          return 'Sonntag';
+        case 1:
+          return 'Montag';
+        case 2:
+          return 'Dienstag';
+        case 3:
+          return 'Mittwoch';
+        case 4:
+          return 'Donnerstag';
+        case 5:
+          return 'Freitag';
+        case 6:
+          return 'Samstag';
+        default:
+          return 'Falscher Tag';
       }
     }
 
@@ -57,7 +57,7 @@ angular.module('loggrioApp')
       // get date from last metering
       var oneWeekAgo = new Date(meterings[meterings.length - 1].time);
       // eleminate time to 00:00:00 (remove actual day)
-      oneWeekAgo.setHours(0,0,0,0);
+      oneWeekAgo.setHours(0, 0, 0, 0);
       // get back additianl 6 days to get correct week cycle
       oneWeekAgo.setDate(oneWeekAgo.getDate() - 6);
       // get time as timestamp
@@ -82,7 +82,7 @@ angular.module('loggrioApp')
             counter = 0;
             data.averageWeek.categories.push(getWeekDay(day));
             data.averageWeek.values.push(value);
-          // else sum up average
+            // else sum up average
           } else {
             counter++;
             var lastValue = data.averageWeek.values[length - 1];
@@ -103,7 +103,7 @@ angular.module('loggrioApp')
             position = index;
           }
         });
-      // viewConfig non existing
+        // viewConfig non existing
       } else {
         position = -2;
       }

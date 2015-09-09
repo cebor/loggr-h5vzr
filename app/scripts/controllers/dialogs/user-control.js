@@ -41,7 +41,12 @@ angular.module('loggrioApp')
 
       if (this.newPWMatch) {
         var buffer = this.customer;
-        this.customer = new Customer({id: buffer.id, username: buffer.username, email: buffer.email, password: this.confirmPass});
+        this.customer = new Customer({
+          id: buffer.id,
+          username: buffer.username,
+          email: buffer.email,
+          password: this.confirmPass
+        });
         this.formInvalid = false;
       } else {
         this.formInvalid = true;
@@ -49,7 +54,9 @@ angular.module('loggrioApp')
     };
 
     this.submit = function () {
-      Customer.prototype$updateAttributes({ id: this.customer.id }, this.customer, function (user) {
+      Customer.prototype$updateAttributes({
+        id: this.customer.id
+      }, this.customer, function (user) {
         $rootScope.user = user;
       });
       $mdDialog.hide();

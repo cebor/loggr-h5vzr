@@ -79,19 +79,19 @@ angular.module('loggrioApp')
           yAxisText = 'Luftdruck (' + unitText + ')';
           tooltipSuffixText = ' ' + unitText;
           seriesName = 'Luftdruck';
-        break;
+          break;
         case 'brightness':
           titleText = 'Helligkeit' + ' ' + sensor.location;
           yAxisText = 'Helligkeit (' + unitText + ')';
           tooltipSuffixText = ' ' + unitText;
           seriesName = 'Helligkeit';
-        break;
+          break;
         case 'humidity':
           titleText = 'Luftfeuchtigkeit' + ' ' + sensor.location;
           yAxisText = 'Relative Luftfeuchtigkeit (' + unitText + ')';
           tooltipSuffixText = ' ' + unitText;
           seriesName = 'Luftfeuchtigkeit';
-        break;
+          break;
         default:
           titleText = 'Error: Unknown sensor type';
           yAxisText = '';

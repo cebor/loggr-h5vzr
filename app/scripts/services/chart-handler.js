@@ -23,7 +23,7 @@ angular.module('loggrioApp')
     var toggled = false;
 
     // deletes items of the arrays and stops all running intervals
-    this.initialize = function() {
+    this.initialize = function () {
       self.stopReload();
       self.customerId = Customer.getCurrentId();
       // TODO: ???? SPLICE ????
@@ -34,30 +34,32 @@ angular.module('loggrioApp')
       self.sensorsInUse.splice(0, self.sensorsInUse.length);
     };
 
-    this.stopReload = function (){
+    this.stopReload = function () {
       for (var id in self.promises) {
         $interval.cancel(self.promises[id]);
       }
     };
 
-    this.goLive = function() {
+    this.goLive = function () {
       self.initialize();
       // get all sensors from the current customer
-      return Customer.sensors({id: self.customerId}).$promise.then(function (sensors) {
+      return Customer.sensors({
+        id: self.customerId
+      }).$promise.then(function (sensors) {
         // generate list of all available sensors for the sortable list
-        angular.forEach(sensors, function(sensor, index){
+        angular.forEach(sensors, function (sensor, index) {
           self.sensors.push(sensor);
           // check if sensor is in use in put in the right order
           var position = util.sensorIsInUse(sensor);
-          if(position > -1){ // in sensorInUse list
+          if (position > -1) { // in sensorInUse list
             self.sensorsInUse[position] = sensor;
-          } else if (position === -2){ // viewConfig non existing
+          } else if (position === -2) { // viewConfig non existing
             self.sensorsInUse[index] = sensor;
           }
         });
 
         // go through all sensors in use to generate acording charts
-        angular.forEach(self.sensorsInUse, function(sensor, index) {
+        angular.forEach(self.sensorsInUse, function (sensor, index) {
           self.charts[index] = {
             default: chartConfig.getSplineChartConfig(sensor),
             average: chartConfig.getColumnChartConfig(sensor),
@@ -68,7 +70,14 @@ angular.module('loggrioApp')
           };
 
           // get metering to acording sensor
-          Customer.meterings({id: self.customerId, filter: {where: {sensorId: sensor.id}}})
+          Customer.meterings({
+              id: self.customerId,
+              filter: {
+                where: {
+                  sensorId: sensor.id
+                }
+              }
+            })
             .$promise.then(function (meterings) {
               // get highcharts objects
               var chart = self.charts[index].default.getHighcharts();
@@ -94,7 +103,17 @@ angular.module('loggrioApp')
               self.promises[sensor.id] = $interval(function () {
                 // shift on more than 5 dots
                 shift = chart.series[0].data.length > 5;
-                Customer.meterings({id: self.customerId, filter: {where: {time: {gt: lastTime}, sensorId: sensor.id}}})
+                Customer.meterings({
+                    id: self.customerId,
+                    filter: {
+                      where: {
+                        time: {
+                          gt: lastTime
+                        },
+                        sensorId: sensor.id
+                      }
+                    }
+                  })
                   .$promise.then(function (meterings) {
 
                     if (meterings.length) {

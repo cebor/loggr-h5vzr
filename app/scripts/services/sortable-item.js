@@ -8,9 +8,9 @@
  * Value in the loggrioApp.
  */
 angular.module('loggrioApp')
-  .service('SortableItem', function() {
+  .service('SortableItem', function () {
 
-    return function(sensor) {
+    return function (sensor) {
       var item;
       switch (sensor.type) {
         case 'temperature':

@@ -12,16 +12,16 @@ angular.module('loggrioApp')
     var self = this;
     var sensors = chartHandler.sensors;
     this.sensors = [];
-    angular.forEach(sensors, function(sensor){
+    angular.forEach(sensors, function (sensor) {
       self.sensors.push(new SortableItem(sensor));
     });
 
     this.sensorsInUse = [];
     this.sensorsAvailable = [];
 
-    this.initArrays = function(){
+    this.initArrays = function () {
       var viewConfig = JSON.parse(localStorage.getItem('viewConfig'));
-      if(!viewConfig){
+      if (!viewConfig) {
         self.sensorsInUse = self.sensors;
       } else {
         self.sensorsAvailable = viewConfig.sensorsAvailable;
@@ -29,19 +29,27 @@ angular.module('loggrioApp')
       }
     };
 
-    this.deleteItem = function(index){
+    this.deleteItem = function (index) {
       self.sensorsAvailable.push(self.sensorsInUse[index]);
       self.sensorsInUse.splice(index, 1);
     };
 
     this.inUseConfig = {
-      group: { name: 'shared', pull: false, put: true },
+      group: {
+        name: 'shared',
+        pull: false,
+        put: true
+      },
       ghostClass: 'ghost',
       animation: 150,
     };
 
     this.availableConfig = {
-      group: { name: 'shared', pull: true, put: false },
+      group: {
+        name: 'shared',
+        pull: true,
+        put: false
+      },
       sort: false,
       ghostClass: 'ghost',
       animation: 150,

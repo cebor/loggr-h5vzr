@@ -23,28 +23,22 @@ angular.module('loggrioApp')
       return (max - min) * SINGLE_STEP_RATIO;
     }
 
-    this.ranges = [
-      {
-        name: 'M',
-        value: MONTH
-      },
-      {
-        name: 'W',
-        value: WEEK
-      },
-      {
-        name: 'T',
-        value: DAY
-      },
-      {
-        name: 'S',
-        value: HOUR
-      },
-      {
-        name: '5m',
-        value: LAST_5
-      }
-    ];
+    this.ranges = [{
+      name: 'M',
+      value: MONTH
+    }, {
+      name: 'W',
+      value: WEEK
+    }, {
+      name: 'T',
+      value: DAY
+    }, {
+      name: 'S',
+      value: HOUR
+    }, {
+      name: '5m',
+      value: LAST_5
+    }];
 
     this.selectRange = function (chart, value) {
       if (!chart) {

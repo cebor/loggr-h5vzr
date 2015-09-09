@@ -10,7 +10,7 @@
 angular.module('loggrioApp')
   .controller('ToolbarCtrl', function ($location, $mdDialog, Customer, chartHandler) {
 
-    this.isAuthed =  function () {
+    this.isAuthed = function () {
       return Customer.isAuthenticated();
     };
 
