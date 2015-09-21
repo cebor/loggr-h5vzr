@@ -1,0 +1,123 @@
+<!doctype html>
+<html ng-app="loggrioApp">
+  <head>
+    <meta charset="utf-8">
+    <title>loggr.io</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/icon-font.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-cloak layout="column">
+    <md-toolbar ng-controller="ToolbarCtrl as toolbar">
+      <div class="md-toolbar-tools">
+        <div flex="15" flex-md="10" flex-sm="5"></div>
+        <img src="images/logo.png" alt="Logo" class="toolbar-logo toolbar-item">
+        <div flex></div>
+        <p ng-if="toolbar.isAuthed()" hide-sm class="md-subhead toolbar-item">
+          <span ng-if="!$root.user.username">{{$root.user.email}}</span>
+          <span ng-if="$root.user.username">{{$root.user.username}}</span>
+        </p>
+
+        <!-- User Menu -->
+        <md-menu ng-if="toolbar.isAuthed()">
+          <md-button class="md-icon-button toolbar-item" aria-label="Account" ng-click="$mdOpenMenu()">
+            <md-icon md-menu-origin>account_circle</md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button ng-click="toolbar.userControlDialog($event)">
+                <md-icon md-menu-align-target>person</md-icon>
+                Benutzerdaten
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="toolbar.logout()">
+                <md-icon md-menu-align-target>power_settings_new</md-icon>
+                Ausloggen
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+        <!-- User Menu: End -->
+
+        <!-- More Menu -->
+        <md-menu>
+          <md-button class="md-icon-button toolbar-item" aria-label="More" ng-click="$mdOpenMenu()">
+            <md-icon md-menu-origin>more_vert</md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button ng-click="toolbar.aboutDialog($event)">
+                <md-icon md-menu-align-target>info_outline</md-icon>
+                Über loggr.io
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="toolbar.imprintDialog($event)">
+                <md-icon md-menu-align-target>format_align_left</md-icon>
+                Impressum
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+        <!-- More Menu: End -->
+
+        <div flex="15" flex-md="10" flex-sm="5"></div>
+      </div>
+    </md-toolbar>
+
+    <md-content flex layout-padding layout="row" layout-align="center start">
+      <div ng-view flex="70" flex-md="85" flex-sm="100"></div>
+    </md-content>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+    <script src="bower_components/highcharts/highcharts.js"></script>
+    <script src="bower_components/highcharts/highcharts-more.js"></script>
+    <script src="bower_components/highcharts/modules/exporting.js"></script>
+    <script src="bower_components/Sortable/Sortable.js"></script>
+    <script src="bower_components/Sortable/ng-sortable.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/services/lb-services.js"></script>
+    <script src="scripts/services/notify.js"></script>
+    <script src="scripts/services/util.js"></script>
+    <script src="scripts/controllers/button-menu.js"></script>
+    <script src="scripts/controllers/toolbar.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/dialogs/common.js"></script>
+    <script src="scripts/controllers/dialogs/configure-view.js"></script>
+    <script src="scripts/controllers/dialogs/pairing.js"></script>
+    <script src="scripts/controllers/dialogs/user-control.js"></script>
+    <script src="scripts/services/chart-config.js"></script>
+    <script src="scripts/services/chart-handler.js"></script>
+    <script src="scripts/services/sortable-item.js"></script>
+    <script src="scripts/services/zoom.js"></script>
+    <script src="scripts/directives/matchTo.js"></script>
+    <script src="scripts/services/chart-menu.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

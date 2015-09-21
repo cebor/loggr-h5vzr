@@ -1,0 +1,76 @@
+<div layout="column" ng-repeat="chart in main.charts">
+  <md-card>
+    <!-- front side -->
+    <md-card-content ng-hide="chart.viewToggled" class="fading range-button" layout-align="center start">
+      <div layout="row">
+        <md-button ng-click="main.zoomNavigation.zoomIn($index)">
+          <md-icon>zoom_in</md-icon>
+        </md-button>
+        <md-button ng-click="main.zoomNavigation.zoomOut($index)">
+          <md-icon>zoom_out</md-icon>
+        </md-button>
+        <md-button ng-repeat="range in main.ranges"
+            ng-click="main.zoomNavigation.selectRange($parent.$index, range.value)">
+          {{range.name}}
+        </md-button>
+        <md-button ng-click="main.zoomNavigation.resetZoom($index)">
+          <md-icon>youtube_searched_for</md-icon>
+        </md-button>
+        <md-button ng-click="main.zoomNavigation.navigateLeft($index)">
+          <md-icon>chevron_left</md-icon>
+        </md-button>
+        <md-button ng-click="main.zoomNavigation.navigateRight($index)">
+          <md-icon>chevron_right</md-icon>
+        </md-button>
+        <div flex></div>
+        <md-menu style="padding: 0 0 !important;">
+          <md-button aria-label="Contextmenu" ng-click="$mdOpenMenu()">
+            <md-icon md-menu-origin>file_download</md-icon>
+          </md-button>
+          <md-menu-content>
+            <md-menu-item ng-repeat="menuItem in main.contextMenu">
+              <md-button ng-click="menuItem.action($parent.$index)">
+                <md-icon md-menu-align-target>{{menuItem.icon}}</md-icon>
+                {{menuItem.label}}
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+        <md-button ng-click="main.toggleChartView($index)">
+          <md-icon>equalizer</md-icon>
+        </md-button>
+      </div>
+      <highchart id="{{$index}}" config="chart.default"></highchart>
+    </md-card-content>
+    <!-- front side end -->
+    <!-- back side -->
+    <md-card-content ng-show="chart.viewToggled" class="fading range-button" layout-align="center start">
+      <div layout="row">
+        <div flex></div>
+        <md-button ng-click="main.toggleChartView($index)">
+          <md-icon md-svg-icon="chart_line" aria-label="chart-line"></md-icon>
+        </md-button>
+      </div>
+      <highchart id="{{$index}}" config="chart.average"></highchart>
+    </md-card-content>
+    <!-- back side end -->
+  </md-card>
+</div>
+
+<div ng-controller="ButtonMenuCtrl as menu" class="button-menu">
+  <md-fab-speed-dial md-direction="up" class="md-scale">
+    <md-fab-trigger>
+      <md-button aria-label="menu" class="md-fab">
+        <md-icon>menu</md-icon>
+      </md-button>
+    </md-fab-trigger>
+    <md-fab-actions>
+      <md-button aria-label="Ansicht konfigurieren" class="md-fab" ng-click="menu.showDialog($event)">
+        <md-icon>edit</md-icon>
+      </md-button>
+      <md-button aria-label="Raspberry pairen" class="md-fab" ng-click="menu.pairingDialog($event)">
+        <md-icon>settings_ethernet</md-icon>
+      </md-button>
+    </md-fab-actions>
+  </md-fab-speed-dial>
+</div>

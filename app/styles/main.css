@@ -1,0 +1,85 @@
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.toolbar-logo {
+  width: 48px;
+  height: 48px;
+}
+
+.toolbar-item {
+  opacity: .77;
+}
+
+.button-menu {
+  box-sizing: border-box;
+  position: fixed;
+  white-space: nowrap;
+  margin: 15px;
+  z-index: 99;
+  right: 0;
+  bottom: 0;
+}
+
+.ghost {
+  opacity: 0.2;
+}
+
+.sortable-list-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.text-align-center{
+  text-align: center
+}
+
+.about-logo {
+  height: 125px;
+}
+
+.range-button .md-button {
+  min-width: 2em;
+  font-weight: 400;
+  margin-left: 0;
+  margin-right: 0;
+  text-transform: none;
+}
+
+.range-button .md-icon-button {
+  height: 24px;
+  width: 24px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.fading.ng-hide-remove, .fading.ng-show-remove {
+  -webkit-transition:all linear 0.7s;
+  -moz-transition:all linear 0.7s;
+  -o-transition:all linear 0.7s;
+  transition:all linear 0.7s;
+}
+.fading.ng-hide-add.ng-hide-add-active,
+.fading.ng-hide-remove {
+  opacity:0;
+}
+.fading.ng-hide-add,
+.fading.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+}
+
+.fading.ng-show-add.ng-show-add-active,
+.fading.ng-show-remove {
+  opacity:1;
+}
+.fading.ng-show-add,
+.fading.ng-show-remove.ng-show-remove-active {
+  opacity:0;
+}
