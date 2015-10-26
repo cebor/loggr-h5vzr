@@ -79,6 +79,15 @@
       <div ng-view flex="70" flex-md="85" flex-sm="100"></div>
     </md-content>
 
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io('http://localhost:3000');
+
+      socket.on('connect', function () {
+        console.log('Connected to websocket!');
+      });
+    </script>
+
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
