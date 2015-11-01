@@ -14,6 +14,15 @@
   height: 48px;
 }
 
+.sidenav-logo {
+  width: 120px;
+  height: 120px;
+}
+
+.sidenav-toolbar {
+  height: 240px;
+}
+
 .toolbar-item {
   opacity: .77;
 }
