@@ -41,6 +41,11 @@ angular
         controller: 'LivestreamCtrl',
         controllerAs: 'livestream'
       })
+      .when('/photogallery', {
+        templateUrl: 'views/photogallery.html',
+        controller: 'PhotogalleryCtrl',
+        controllerAs: 'photogallery'
+      })
       .otherwise({
         redirectTo: '/'
       });
