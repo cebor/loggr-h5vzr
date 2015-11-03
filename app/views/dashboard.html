@@ -13,9 +13,9 @@
   </div>
   <div layout="row">
     <md-card flex="60">
-      <md-card-content>
+      <md-card-content ng-controller="PhotogalleryCtrl as photogallery">
       </p>Photo-Gallery</p>
-      <div layout="column" ng-repeat="shot in login.photogallery">
+      <div layout="column" ng-repeat="shot in photogallery.photogallery">
         <br flex="5">
         <div layout="row">
           <md-icon flex>camera</md-icon>

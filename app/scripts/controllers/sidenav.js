@@ -31,8 +31,8 @@ angular.module('loggrioApp')
         icon: 'videocam'
       },
       {
-        link: '/photo-gallery',
-        title: 'Photo-Gallery',
+        link: '/photogallery',
+        title: 'Photogallery',
         icon: 'photo library'
       },
     ];
