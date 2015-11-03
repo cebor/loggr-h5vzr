@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc function
- * @name loggrioApp.controller:MainCtrl
+ * @name loggrioApp.controller:SensorsCtrl
  * @description
- * # MainCtrl
+ * # SensorsCtrl
  * Controller of the loggrioApp
  */
 angular.module('loggrioApp')
-  .controller('MainCtrl', function ($rootScope, $location, Customer, chartHandler, chartMenu, zoom) {
-
+  .controller('SensorsCtrl', function ($rootScope, $location, Customer, chartHandler, chartMenu, zoom) {
+    $rootScope.header = 'Sensors';
     // THIS FIX IS DEDICATED TO MARKO G.
     if (!Customer.isAuthenticated()) {
       $location.path('/login');

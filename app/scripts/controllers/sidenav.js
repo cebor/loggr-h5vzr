@@ -8,9 +8,10 @@
  * Controller of the loggrioApp
  */
 angular.module('loggrioApp')
-  .controller('SidenavCtrl', function ($location) {
-    this.navigateTo = function (url) {
-      $location.path(url);
+  .controller('SidenavCtrl', function ($location, $mdSidenav) {
+    this.navigateTo = function (menuItem) {
+      $mdSidenav('left').close();
+      $location.path(menuItem.link);
     };
 
     this.menu = [
@@ -25,8 +26,8 @@ angular.module('loggrioApp')
         icon: 'poll'
       },
       {
-        link: '/live-stream',
-        title: 'Live-Stream',
+        link: '/livestream',
+        title: 'Livestream',
         icon: 'videocam'
       },
       {
