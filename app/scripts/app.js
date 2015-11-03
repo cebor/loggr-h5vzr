@@ -15,7 +15,8 @@ angular
     'lbServices',
     'ngMaterial',
     'highcharts-ng',
-    'ng-sortable'
+    'ng-sortable',
+    'jkuri.gallery'
   ])
   .config(function ($routeProvider, $httpProvider, $mdIconProvider, $mdThemingProvider, LoopBackResourceProvider, API) {
 
