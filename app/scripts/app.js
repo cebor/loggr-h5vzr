@@ -22,9 +22,9 @@ angular
 
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'views/sensors.html',
+        controller: 'SensorsCtrl',
+        controllerAs: 'sensors'
       })
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -33,8 +33,13 @@ angular
       })
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
-        controller: 'MainCtrl',
-        controllerAs: 'login'
+        controller: 'DashboardCtrl',
+        controllerAs: 'dashboard'
+      })
+      .when('/livestream', {
+        templateUrl: 'views/livestream.html',
+        controller: 'LivestreamCtrl',
+        controllerAs: 'livestream'
       })
       .otherwise({
         redirectTo: '/'
