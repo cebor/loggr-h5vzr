@@ -44,7 +44,7 @@ angular
       .when('/photogallery', {
         templateUrl: 'views/photogallery.html',
         controller: 'PhotogalleryCtrl',
-        controllerAs: 'photogallery'
+        controllerAs: 'photo'
       })
       .otherwise({
         redirectTo: '/'

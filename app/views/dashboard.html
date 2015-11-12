@@ -2,35 +2,31 @@
   <div layout="row">
     <md-card flex="40">
       <md-card-content>
-        </p>Sensors</p>
-      </md-card-content>
-    </md-card>
-    <md-card flex="60">
-      <md-card-content>
-      </p>Live-Stream</p>
-      </md-card-content>
-    </md-card>
-  </div>
-  <div layout="row">
-    <md-card flex="60">
-      <md-card-content ng-controller="PhotogalleryCtrl as photogallery">
-      </p>Photo-Gallery</p>
-      <div layout="column" ng-repeat="shot in photogallery.photogallery">
-        <br flex="5">
-        <div layout="row">
-          <md-icon flex>camera</md-icon>
-          <i flex="15" style="padding-top:2%">{{shot.date | date:'dd/MM/yyyy @hh:mm'}}</i>
-          <ng-gallery flex="60" images="shot.images"></ng-gallery>
-          <md-button>
-            <md-tooltip>Download Photos</md-tooltip>
-            <md-icon>file_download</md-icon>
-          </md-button>
-        </div>
-        <br flex="5">
-        <md-divider></md-divider>
+      </p>Sensors</p>
+    </md-card-content>
+  </md-card>
+  <md-card flex="60">
+    <md-card-content>
+    </p>Live-Stream</p>
+  </md-card-content>
+</md-card>
+</div>
+<div layout="row">
+  <md-card flex="60">
+    <md-card-content ng-controller="PhotogalleryCtrl as photogallery">
+    </p>Photo-Gallery</p>
+    <div ng-repeat="shot in photogallery.photogallery">
+      <br flex="5">
+      <div layout="row">
+        <md-icon flex>camera</md-icon>
+        <i style="padding-top:3%">{{shot.date | date:'dd/MM/yyyy @hh:mm'}}</i>
+        <a flex/>
+        <ng-gallery flex="55" images="shot.images"></ng-gallery>
       </div>
-
-      </md-card-content>
-    </md-card>
-  </div>
+      <br ng-hide="$last"/>
+      <md-divider ng-hide="$last"></md-divider>
+    </div>
+  </md-card-content>
+</md-card>
+</div>
 </div>
