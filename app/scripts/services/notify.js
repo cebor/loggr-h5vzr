@@ -77,4 +77,25 @@ angular.module('loggrioApp')
       }).finally(restoreDiconnectToast);
     };
 
+    this.toastPhotoDeleteSucess = function () {
+      $mdToast.show({
+        template: '<md-toast>' +
+          ' <md-icon style="color: white">done</md-icon>' +
+          ' <span flex>  Photos deleted sucessfully</span>' +
+          '</md-toast>',
+        position: 'bottom left',
+        hideDelay: 3000,
+      });
+    };
+
+    this.toastPhotoDeleteFail = function () {
+      $mdToast.show({
+        template: '<md-toast>' +
+          ' <md-icon style="color: white">flash_on</md-icon>' +
+          ' <span flex>  Photos could not be deleted</span>' +
+          '</md-toast>',
+        position: 'bottom left',
+        hideDelay: 3000,
+      });
+    };
   });
