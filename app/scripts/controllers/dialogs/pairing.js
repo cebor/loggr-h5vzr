@@ -30,13 +30,13 @@ angular.module('loggrioApp')
         $http.post(requestURL, payload)
           .success(function (data) {
             if (data.status === 'ok') {
-              notify.toastPaired();
+              notify.showToast('Pairing erfolgreich', 'check');
             } else { // Pairing failed because of format error in token/id, missing arguments
-              notify.toastPairingFailed();
+              notify.showToast('Pairing fehlgeschlagen', 'flash_on');
             }
           })
           .error(function () { // Configserver unavailable, request timed out
-            notify.toastPairingTimeOut();
+            notify.showToast('Raspberry nicht verfügbar', 'flash_on');
           });
       });
 
