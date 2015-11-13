@@ -80,9 +80,9 @@ angular.module('loggrioApp')
       console.log(timestamp);
       /*
       //onSuccess
-      notify.toastPhotoDeleteSucess();
+      notify.showToast('Photos deleted sucessfully', 'check');
       //onFail
-      notify.toastPhotoDeleteFail();
+      notify.showToast('Photos could not be deleted', 'flash_on');
       */
     };
   });
