@@ -1,25 +1,25 @@
-<div layout="column" ng-repeat="chart in main.charts">
+<div layout="column" ng-repeat="chart in sensors.charts">
   <md-card>
     <!-- front side -->
     <md-card-content ng-hide="chart.viewToggled" class="fading range-button" layout-align="center start">
       <div layout="row">
-        <md-button ng-click="main.zoomNavigation.zoomIn($index)">
+        <md-button ng-click="sensors.zoomNavigation.zoomIn($index)">
           <md-icon>zoom_in</md-icon>
         </md-button>
-        <md-button ng-click="main.zoomNavigation.zoomOut($index)">
+        <md-button ng-click="sensors.zoomNavigation.zoomOut($index)">
           <md-icon>zoom_out</md-icon>
         </md-button>
-        <md-button ng-repeat="range in main.ranges"
-            ng-click="main.zoomNavigation.selectRange($parent.$index, range.value)">
+        <md-button ng-repeat="range in sensors.ranges"
+            ng-click="sensors.zoomNavigation.selectRange($parent.$index, range.value)">
           {{range.name}}
         </md-button>
-        <md-button ng-click="main.zoomNavigation.resetZoom($index)">
+        <md-button ng-click="sensors.zoomNavigation.resetZoom($index)">
           <md-icon>youtube_searched_for</md-icon>
         </md-button>
-        <md-button ng-click="main.zoomNavigation.navigateLeft($index)">
+        <md-button ng-click="sensors.zoomNavigation.navigateLeft($index)">
           <md-icon>chevron_left</md-icon>
         </md-button>
-        <md-button ng-click="main.zoomNavigation.navigateRight($index)">
+        <md-button ng-click="sensors.zoomNavigation.navigateRight($index)">
           <md-icon>chevron_right</md-icon>
         </md-button>
         <div flex></div>
@@ -28,7 +28,7 @@
             <md-icon md-menu-origin>file_download</md-icon>
           </md-button>
           <md-menu-content>
-            <md-menu-item ng-repeat="menuItem in main.contextMenu">
+            <md-menu-item ng-repeat="menuItem in sensors.contextMenu">
               <md-button ng-click="menuItem.action($parent.$index)">
                 <md-icon md-menu-align-target>{{menuItem.icon}}</md-icon>
                 {{menuItem.label}}
@@ -36,7 +36,7 @@
             </md-menu-item>
           </md-menu-content>
         </md-menu>
-        <md-button ng-click="main.toggleChartView($index)">
+        <md-button ng-click="sensors.toggleChartView($index)">
           <md-icon>equalizer</md-icon>
         </md-button>
       </div>
@@ -47,7 +47,7 @@
     <md-card-content ng-show="chart.viewToggled" class="fading range-button" layout-align="center start">
       <div layout="row">
         <div flex></div>
-        <md-button ng-click="main.toggleChartView($index)">
+        <md-button ng-click="sensors.toggleChartView($index)">
           <md-icon md-svg-icon="chart_line" aria-label="chart-line"></md-icon>
         </md-button>
       </div>

@@ -14,70 +14,107 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/icon-font.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/ngGallery/src/css/ngGallery.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/ngGallery/src/css/screen.css">
     <!-- endbuild -->
   </head>
-  <body ng-cloak layout="column">
-    <md-toolbar ng-controller="ToolbarCtrl as toolbar">
-      <div class="md-toolbar-tools">
-        <div flex="15" flex-md="10" flex-sm="5"></div>
-        <img src="images/logo.png" alt="Logo" class="toolbar-logo toolbar-item">
-        <div flex></div>
-        <p ng-if="toolbar.isAuthed()" hide-sm class="md-subhead toolbar-item">
-          <span ng-if="!$root.user.username">{{$root.user.email}}</span>
-          <span ng-if="$root.user.username">{{$root.user.username}}</span>
-        </p>
+  <body ng-cloak layout="row">
 
-        <!-- User Menu -->
-        <md-menu ng-if="toolbar.isAuthed()">
-          <md-button class="md-icon-button toolbar-item" aria-label="Account" ng-click="$mdOpenMenu()">
-            <md-icon md-menu-origin>account_circle</md-icon>
-          </md-button>
-          <md-menu-content width="4">
-            <md-menu-item>
-              <md-button ng-click="toolbar.userControlDialog($event)">
-                <md-icon md-menu-align-target>person</md-icon>
-                Benutzerdaten
-              </md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="toolbar.logout()">
-                <md-icon md-menu-align-target>power_settings_new</md-icon>
-                Ausloggen
-              </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-        <!-- User Menu: End -->
+      <!-- Sidenav -->
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+        <md-toolbar class="sidenav-toolbar" layout="column" layout-align="center center">
+          <img src="images/logo.png" alt="Logo" class="toolbar-item sidenav-logo">
+          <h2 class="toolbar-item">loggr.io</h2>
+        </md-toolbar>
+        <md-content ng-Controller="SidenavCtrl as sidenav">
+          <md-list>
+            <md-list-item ng-repeat="item in sidenav.menu" ng-click="sidenav.navigateTo(item)">
+            <md-icon>{{item.icon}}</md-icon>
+            <p>{{item.title}}</p>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-sidenav>
+      <!-- Sidenav: End -->
 
-        <!-- More Menu -->
-        <md-menu>
-          <md-button class="md-icon-button toolbar-item" aria-label="More" ng-click="$mdOpenMenu()">
-            <md-icon md-menu-origin>more_vert</md-icon>
-          </md-button>
-          <md-menu-content width="4">
-            <md-menu-item>
-              <md-button ng-click="toolbar.aboutDialog($event)">
-                <md-icon md-menu-align-target>info_outline</md-icon>
-                Über loggr.io
-              </md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="toolbar.imprintDialog($event)">
-                <md-icon md-menu-align-target>format_align_left</md-icon>
-                Impressum
-              </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-        <!-- More Menu: End -->
+      <div layout="column" flex>
+        <md-toolbar ng-controller="ToolbarCtrl as toolbar">
+          <div class="md-toolbar-tools toolbar-tools" layout="row">
 
-        <div flex="15" flex-md="10" flex-sm="5"></div>
-      </div>
-    </md-toolbar>
+            <div flex="15" flex-md="10" flex-sm="auto" layout="row" layout-align="start center">
+              <md-button class="md-icon-button toolbar-item" aria-label="Sidenav" ng-click="toolbar.toggleSidenav()">
+                <md-icon md-menu-origin>menu</md-icon>
+              </md-button>
+            </div>
 
-    <md-content flex layout-padding layout="row" layout-align="center start">
-      <div ng-view flex="70" flex-md="85" flex-sm="100"></div>
-    </md-content>
+            <div flex="70" flex-md="80" flex-sm="auto" layout="row" layout-align="start center">
+              <img src="images/logo.png" alt="Logo" class="toolbar-logo toolbar-item">
+              <p ng-if="toolbar.isAuthed()" hide-sm class="md-subhead toolbar-item toolbar-header">
+                {{$root.header}}
+              </p>
+
+              <span flex></span>
+
+              <p ng-if="toolbar.isAuthed()" hide-sm class="md-subhead toolbar-item">
+                <span ng-if="!$root.user.username">{{$root.user.email}}</span>
+                <span ng-if="$root.user.username">{{$root.user.username}}</span>
+              </p>
+
+              <!-- User Menu -->
+              <md-menu ng-if="toolbar.isAuthed()">
+                <md-button class="md-icon-button toolbar-item" aria-label="Account" ng-click="$mdOpenMenu()">
+                  <md-icon md-menu-origin>account_circle</md-icon>
+                </md-button>
+                <md-menu-content width="4">
+                  <md-menu-item>
+                    <md-button ng-click="toolbar.userControlDialog($event)">
+                      <md-icon md-menu-align-target>person</md-icon>
+                      Benutzerdaten
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="toolbar.logout()">
+                      <md-icon md-menu-align-target>power_settings_new</md-icon>
+                      Ausloggen
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </div>
+            <!-- User Menu: End -->
+            <div flex="15" flex-md="10" flex-sm="auto" layout="row" layout-align="end end">
+            <!-- More Menu -->
+              <span flex></span>
+              <md-menu>
+                <md-button class="md-icon-button toolbar-item toolbar-user-button" aria-label="More" ng-click="$mdOpenMenu()">
+                  <md-icon md-menu-origin>more_vert</md-icon>
+                </md-button>
+                <md-menu-content width="4">
+                  <md-menu-item>
+                    <md-button ng-click="toolbar.aboutDialog($event)">
+                      <md-icon md-menu-align-target>info_outline</md-icon>
+                      Über loggr.io
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="toolbar.imprintDialog($event)">
+                      <md-icon md-menu-align-target>format_align_left</md-icon>
+                      Impressum
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </div>
+            <!-- More Menu: End -->
+
+          </div>
+        </md-toolbar>
+
+        <md-content flex layout="row" layout-align="center start">
+          <div ng-view flex="70" flex-md="80" flex-sm="100"></div>
+        </md-content>
+
+    </div>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -95,6 +132,7 @@
     <script src="bower_components/highcharts/modules/exporting.js"></script>
     <script src="bower_components/Sortable/Sortable.js"></script>
     <script src="bower_components/Sortable/ng-sortable.js"></script>
+    <script src="bower_components/ngGallery/src/js/ngGallery.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -107,7 +145,7 @@
     <script src="scripts/controllers/button-menu.js"></script>
     <script src="scripts/controllers/toolbar.js"></script>
     <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/sensors.js"></script>
     <script src="scripts/controllers/dialogs/common.js"></script>
     <script src="scripts/controllers/dialogs/configure-view.js"></script>
     <script src="scripts/controllers/dialogs/pairing.js"></script>
@@ -118,6 +156,10 @@
     <script src="scripts/services/zoom.js"></script>
     <script src="scripts/directives/matchTo.js"></script>
     <script src="scripts/services/chart-menu.js"></script>
+    <script src="scripts/controllers/sidenav.js"></script>
+    <script src="scripts/controllers/livestream.js"></script>
+    <script src="scripts/controllers/dashboard.js"></script>
+    <script src="scripts/controllers/photogallery.js"></script>
     <!-- endbuild -->
   </body>
 </html>

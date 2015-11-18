@@ -15,20 +15,36 @@ angular
     'lbServices',
     'ngMaterial',
     'highcharts-ng',
-    'ng-sortable'
+    'ng-sortable',
+    'jkuri.gallery'
   ])
   .config(function ($routeProvider, $httpProvider, $mdIconProvider, $mdThemingProvider, LoopBackResourceProvider, API) {
 
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'views/sensors.html',
+        controller: 'SensorsCtrl',
+        controllerAs: 'sensors'
       })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
+      })
+      .when('/dashboard', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl',
+        controllerAs: 'dashboard'
+      })
+      .when('/livestream', {
+        templateUrl: 'views/livestream.html',
+        controller: 'LivestreamCtrl',
+        controllerAs: 'livestream'
+      })
+      .when('/photogallery', {
+        templateUrl: 'views/photogallery.html',
+        controller: 'PhotogalleryCtrl',
+        controllerAs: 'photo'
       })
       .otherwise({
         redirectTo: '/'

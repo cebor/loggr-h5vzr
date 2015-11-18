@@ -8,7 +8,11 @@
  * Controller of the loggrioApp
  */
 angular.module('loggrioApp')
-  .controller('ToolbarCtrl', function ($location, $mdDialog, Customer, chartHandler) {
+  .controller('ToolbarCtrl', function ($location, $mdDialog, $mdSidenav, Customer, chartHandler) {
+
+    this.toggleSidenav = function () {
+      $mdSidenav('left').toggle();
+    };
 
     this.isAuthed = function () {
       return Customer.isAuthenticated();
