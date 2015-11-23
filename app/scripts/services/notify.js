@@ -20,14 +20,15 @@ angular.module('loggrioApp')
       }
     }
 
-    this.showToast = function(text, icon, hidedelay){
+    this.showToast = function (text, icon, hidedelay) {
+      hidedelay = (typeof hidedelay === 'undefined') ? 3000 : hidedelay;
       $mdToast.show({
         template: '<md-toast>' +
           ' <md-icon style="color: white">' + icon + '</md-icon>' +
           ' <span flex>  ' + text + '</span>' +
           '</md-toast>',
         position: 'bottom left',
-        hideDelay: hidedelay || 3000,
+        hideDelay: hidedelay,
       }).finally(restoreDiconnectToast);
     };
 
