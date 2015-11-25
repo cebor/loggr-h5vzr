@@ -19,25 +19,31 @@
   </head>
   <body ng-cloak layout="row">
 
-      <!-- Sidenav -->
-      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-        <md-toolbar class="sidenav-toolbar" layout="column" layout-align="center center">
-          <img src="images/logo.png" alt="Logo" class="toolbar-item sidenav-logo">
-          <h2 class="toolbar-item">loggr.io</h2>
-        </md-toolbar>
-        <md-content ng-Controller="SidenavCtrl as sidenav">
-          <md-list>
-            <md-list-item ng-repeat="item in sidenav.menu" ng-click="sidenav.navigateTo(item)">
-            <md-icon>{{item.icon}}</md-icon>
-            <p>{{item.title}}</p>
-            </md-list-item>
-          </md-list>
-        </md-content>
-      </md-sidenav>
-      <!-- Sidenav: End -->
+    <!-- Sidenav -->
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+      <md-toolbar class="sidenav-toolbar" layout="column" layout-align="center center">
+        <img src="images/logo.png" alt="Logo" class="toolbar-item sidenav-logo">
+        <h2 class="toolbar-item">loggr.io</h2>
+      </md-toolbar>
+      <md-content ng-Controller="SidenavCtrl as sidenav">
+        <md-list>
+          <md-list-item ng-repeat="item in sidenav.menu" ng-click="sidenav.navigateTo(item)">
+          <md-icon>{{item.icon}}</md-icon>
+          <p>{{item.title}}</p>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </md-sidenav>
+    <!-- Sidenav: End -->
 
-      <div layout="column" flex>
-        <md-toolbar ng-controller="ToolbarCtrl as toolbar">
+    <div layout="column" flex>
+    <!-- <md-content layout="column" flex> -->
+      <div md-page-header>
+        <div md-header-picture></div>
+        <!-- <div md-header-picture sticky inner-offset-bottom="64"></div> -->
+        <!-- <md-toolbar ng-controller="ToolbarCtrl as toolbar"> -->
+        <md-toolbar scroll ng-controller="ToolbarCtrl as toolbar">
+          <!-- <md-toolbar sticky offset="64" ng-controller="ToolbarCtrl as toolbar"> -->
           <div class="md-toolbar-tools toolbar-tools" layout="row">
 
             <div flex="15" flex-md="10" flex-sm="auto" layout="row" layout-align="start center">
@@ -82,7 +88,7 @@
             </div>
             <!-- User Menu: End -->
             <div flex="15" flex-md="10" flex-sm="auto" layout="row" layout-align="end end">
-            <!-- More Menu -->
+              <!-- More Menu -->
               <span flex></span>
               <md-menu>
                 <md-button class="md-icon-button toolbar-item toolbar-user-button" aria-label="More" ng-click="$mdOpenMenu()">
@@ -105,16 +111,16 @@
               </md-menu>
             </div>
             <!-- More Menu: End -->
-
           </div>
         </md-toolbar>
+      </div>
 
-        <md-content flex layout="row" layout-align="center start">
-          <div ng-view flex="70" flex-md="80" flex-sm="100"></div>
-        </md-content>
-
+      <div layout="row" layout-align="center start">
+        <div ng-view flex="70" flex-md="80" flex-sm="100"></div>
+      </div>
     </div>
-    
+    <!-- </md-content> -->
+
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script>
       var socket = io('http://localhost:3000');
@@ -168,6 +174,7 @@
     <script src="scripts/controllers/livestream.js"></script>
     <script src="scripts/controllers/dashboard.js"></script>
     <script src="scripts/controllers/photogallery.js"></script>
+    <script src="scripts/directives/scroll.js"></script>
     <!-- endbuild -->
   </body>
 </html>
