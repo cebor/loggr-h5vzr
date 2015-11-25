@@ -9,6 +9,27 @@
   display: none !important;
 }
 
+[md-header-picture] {
+  background-image: url(../images/header-picture.png);
+  position: relative;
+  width:100%;
+  height:0;
+  padding-bottom: 30%;
+  overflow:hidden;
+  background-size:100%; /* You can override this value if your picture has a weird ratio */
+  background-position:50% 60%;
+  z-index: 1;
+}
+
+[scroll] {
+  position:fixed;
+  top:0;
+}
+
+.md-sidenav-backdrop, .md-sidenav-left{
+  position: fixed;
+}
+
 .toolbar-tools {
   padding: 0px;
 }
@@ -78,45 +99,4 @@
   width: 24px;
   margin-left: 0;
   margin-right: 0;
-}
-
-.fading.ng-hide-remove, .fading.ng-show-remove {
-  -webkit-transition:all linear 0.7s;
-  -moz-transition:all linear 0.7s;
-  -o-transition:all linear 0.7s;
-  transition:all linear 0.7s;
-}
-.fading.ng-hide-add.ng-hide-add-active,
-.fading.ng-hide-remove {
-  opacity:0;
-}
-.fading.ng-hide-add,
-.fading.ng-hide-remove.ng-hide-remove-active {
-  opacity:1;
-}
-
-.fading.ng-show-add.ng-show-add-active,
-.fading.ng-show-remove {
-  opacity:1;
-}
-.fading.ng-show-add,
-.fading.ng-show-remove.ng-show-remove-active {
-  opacity:0;
-}
-
-.max-height {
-  max-height: calc(100vh - 120px);
-}
-
-#largeImgPanel {
-  display: none;
-  position: fixed;
-  z-index: 100;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background-color: rgba(100,100,100, 0.5);
-}
-
-#largeImg {
-  display: block;
-
 }
