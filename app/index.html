@@ -37,13 +37,9 @@
     <!-- Sidenav: End -->
 
     <div layout="column" flex>
-    <!-- <md-content layout="column" flex> -->
-      <div md-page-header>
-        <div md-header-picture></div>
-        <!-- <div md-header-picture sticky inner-offset-bottom="64"></div> -->
-        <!-- <md-toolbar ng-controller="ToolbarCtrl as toolbar"> -->
+      <div scroll-header>
+        <div scroll-picture></div>
         <md-toolbar scroll ng-controller="ToolbarCtrl as toolbar">
-          <!-- <md-toolbar sticky offset="64" ng-controller="ToolbarCtrl as toolbar"> -->
           <div class="md-toolbar-tools toolbar-tools" layout="row">
 
             <div flex="15" flex-md="10" flex-sm="auto" layout="row" layout-align="start center">
@@ -53,8 +49,9 @@
             </div>
 
             <div flex="70" flex-md="80" flex-sm="auto" layout="row" layout-align="start center">
-              <img src="images/logo.png" alt="Logo" class="toolbar-logo toolbar-item">
-              <p ng-if="toolbar.isAuthed()" hide-sm class="md-subhead toolbar-item toolbar-header">
+              <img scroll-logo src="images/logo.png" alt="Logo" class="toolbar-logo toolbar-item">
+              <p scroll-title hide-sm class="md-subhead toolbar-item toolbar-header">
+                <!-- ng-if="toolbar.isAuthed()" -->
                 {{$root.header}}
               </p>
 

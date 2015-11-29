@@ -9,7 +9,7 @@
   display: none !important;
 }
 
-[md-header-picture] {
+[scroll-picture] {
   background-image: url(../images/header-picture.png);
   position: relative;
   width:100%;
@@ -35,10 +35,10 @@
 }
 
 .toolbar-logo {
-  width: 48px;
   height: 48px;
+  width: 48px;
   margin-left: 16px;
-  margin-right: 8px;
+  margin-right: 16px;
 }
 
 .toolbar-header {
@@ -100,3 +100,36 @@
   margin-left: 0;
   margin-right: 0;
 }
+
+/* animations */
+.an-logo-size-add, .an-logo-size-remove, .an-title-size-add, .an-title-size-remove {
+  -webkit-transition:all 0.1s ease;
+  -moz-transition:all 0.1s ease;
+  -o-transition:all 0.1s ease;
+  transition:all 0.1s ease;
+}
+
+.an-logo-size,
+.an-logo-size-add.an-logo-size-add-active {
+  top: 20px;
+  height: 82px;
+  width: 82px;
+  margin-top: 64px;
+}
+
+/*.an-logo-size-remove.an-logo-size-remove-active {
+  height: 48px;
+  width: 48px;
+}*/
+
+.an-title-size,
+.an-title-size-add.an-title-size-add-active {
+  margin-top: 84px;
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+/*.an-title-size-remove.an-title-size-remove-active {
+  font-size: 16px;
+}*/
+/* end animations */
