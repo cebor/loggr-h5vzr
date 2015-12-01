@@ -16,7 +16,7 @@ angular
     'ngMaterial',
     'highcharts-ng',
     'ng-sortable',
-    'jkuri.gallery'
+    'angular-coverflow'
   ])
   .config(function ($routeProvider, $httpProvider, $mdIconProvider, $mdThemingProvider, LoopBackResourceProvider, API) {
 
