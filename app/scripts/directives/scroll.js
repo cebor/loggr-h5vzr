@@ -9,17 +9,19 @@
 angular.module('loggrioApp')
 .directive('scroll', function ($window, $animate) {
 
-    return function(scope, element) {
+    return function(scope, element, attrs) {
 
       /* header DOM element with md-page-header attribute */
-      var header = angular.element('[scroll-header]');
-      var headerDimensions;
-
-      var logo = angular.element('[scroll-logo]');
-      var logoHeight;
+      var header;
+      var headerRect;
+      
+      var picture;
+      
+      var logo;
+      var logoRect;
       var heightToShrink;
 
-      var title = angular.element('[scroll-title]');
+      var title;
 
       /* The height of a toolbar by default in Angular Material */
       var defaultToolbarHeight = 64;
@@ -27,16 +29,26 @@ angular.module('loggrioApp')
       var toolbarColor = [0,150,136];
 
       function initialize() {
-        headerDimensions = header[0].getBoundingClientRect();
-        logo.addClass('an-logo-size');
-        title.addClass('an-title-size');
-        logoHeight = logo[0].clientHeight;
-        console.log(logoHeight);
-        heightToShrink = logoHeight * 1.3;
+        element.wrap( "<div scroll-header></div>" );
+        element.before( "<div scroll-picture></div>" );
+        
+        header = angular.element('[scroll-header]');
+        headerRect = header[0].getBoundingClientRect();
+        
+        picture = angular.element('[scroll-picture]');
+        picture.css('background-image', 'url(' + attrs.imgUrl +')');
+        
+        logo = angular.element('.' + attrs.logoClass);
+        logo.addClass('logo-size');
+        logoRect = logo[0].getBoundingClientRect();
+        heightToShrink = logoRect.bottom + logoRect.top;
+        
+        title = angular.element('.' + attrs.titleClass);
+        title.addClass('title-size');        
       }
 
-      function handleStyle(dim) {
-        var tmpHeight = dim.bottom - headerDimensions.top;
+      function update(Rect) {
+        var tmpHeight = Rect.bottom - headerRect.top;
 
         /* toolbar height */
         if ((tmpHeight) > defaultToolbarHeight) {
@@ -46,50 +58,49 @@ angular.module('loggrioApp')
         }
 
         /* transparancy */
-        element.css('background-color','rgba('+toolbarColor[0]+','+toolbarColor[1]+','+toolbarColor[2]+','+(1-ratio(dim))+')');
+        element.css('background-color','rgba('+toolbarColor[0]+','+toolbarColor[1]+','+toolbarColor[2]+','+(1-ratio(Rect))+')');
         /* shadow */
-        element.css('box-shadow', '0 '+(dim.height*3/4)+'px '+(dim.height/2)+'px -'+(dim.height/2)+'px rgba(0,0,0,'+ratio(dim)/2+') inset');
+        element.css('box-shadow', '0 '+(Rect.height*3/4)+'px '+(Rect.height/2)+'px -'+(Rect.height/2)+'px rgba(0,0,0,'+ratio(Rect)/2+') inset');
 
         /* shrink logo */
-        if (tmpHeight <= heightToShrink && logo.hasClass('an-logo-size')) {
-          $animate.removeClass(logo, 'an-logo-size');
-          $animate.removeClass(title, 'an-title-size');
+        if (tmpHeight <= heightToShrink && logo.hasClass('logo-size')) {
+          $animate.removeClass(logo, 'logo-size');
+          $animate.removeClass(title, 'title-size');
         }
-        if (tmpHeight > heightToShrink && !logo.hasClass('an-logo-size')) {
-          $animate.addClass(logo, 'an-logo-size');
-          $animate.addClass(title, 'an-title-size');
+        if (tmpHeight > heightToShrink && !logo.hasClass('logo-size')) {
+          $animate.addClass(logo, 'logo-size');
+          $animate.addClass(title, 'title-size');
         }
 
       }
 
-      function ratio(dim) {
-        var r = (dim.bottom-headerDimensions.top)/dim.height;
+      function ratio(rect) {
+        var ret = (rect.bottom-headerRect.top)/rect.height;
 
-        if(r < 0) {
+        if(ret < 0) {
           return 0;
         }
-        if(r > 1) {
+        if(ret > 1) {
           return 1;
         }
 
-        return Number(r.toFixed(2));
-        // return Number(r.toString().match(/^\d+(?:\.\d{0,2})?/));
+        return Number(ret.toFixed(2));
       }
 
       initialize();
-      handleStyle(headerDimensions);
+      update(headerRect);
 
       /* Scroll event listener */
       angular.element($window).bind('scroll', function() {
-        var tmpHeaderDim = header[0].getBoundingClientRect();
-        handleStyle(tmpHeaderDim);
+        var tmpHeaderRect = header[0].getBoundingClientRect();
+        update(tmpHeaderRect);
         scope.$apply();
       });
 
       /* Resize event listener */
       angular.element($window).bind('resize',function () {
-        headerDimensions = header[0].getBoundingClientRect();
-        handleStyle(headerDimensions);
+        headerRect = header[0].getBoundingClientRect();
+        update(headerRect);
         scope.$apply();
       });
 

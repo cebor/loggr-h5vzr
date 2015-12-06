@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/icon-font.css">
     <!-- endbuild -->
+    <link rel="stylesheet" href="styles/scroll.css">
   </head>
   <body ng-cloak layout="row">
 
@@ -37,9 +38,8 @@
     <!-- Sidenav: End -->
 
     <div layout="column" flex>
-      <div scroll-header>
-        <div scroll-picture></div>
-        <md-toolbar scroll ng-controller="ToolbarCtrl as toolbar">
+
+        <md-toolbar scroll img-url="../images/header-picture.png" logo-class="toolbar-logo" title-class="toolbar-header" ng-controller="ToolbarCtrl as toolbar">
           <div class="md-toolbar-tools toolbar-tools" layout="row">
 
             <div flex="15" flex-md="10" flex-sm="auto" layout="row" layout-align="start center">
@@ -49,8 +49,8 @@
             </div>
 
             <div flex="70" flex-md="80" flex-sm="auto" layout="row" layout-align="start center">
-              <img scroll-logo src="images/logo.png" alt="Logo" class="toolbar-logo toolbar-item">
-              <p scroll-title hide-sm class="md-subhead toolbar-item toolbar-header">
+              <img src="images/logo.png" alt="Logo" class="toolbar-logo toolbar-item">
+              <p hide-sm class="md-subhead toolbar-item toolbar-header">
                 <!-- ng-if="toolbar.isAuthed()" -->
                 {{$root.header}}
               </p>
@@ -110,7 +110,6 @@
             <!-- More Menu: End -->
           </div>
         </md-toolbar>
-      </div>
 
       <div layout="row" layout-align="center start">
         <div ng-view flex="70" flex-md="80" flex-sm="100"></div>
