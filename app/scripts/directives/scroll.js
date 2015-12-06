@@ -11,7 +11,8 @@ angular.module('loggrioApp')
 
     return function(scope, element, attrs) {
 
-      /* header DOM element with md-page-header attribute */
+      var body;
+      
       var header;
       var headerRect;
       
@@ -44,7 +45,10 @@ angular.module('loggrioApp')
         heightToShrink = logoRect.bottom + logoRect.top;
         
         title = angular.element('.' + attrs.titleClass);
-        title.addClass('title-size');        
+        title.addClass('title-size');
+        
+        body = angular.element('body');
+        body.css('height', $window.innerHeight + headerRect.height - defaultToolbarHeight);
       }
 
       function update(Rect) {
