@@ -104,6 +104,10 @@
   opacity:0;
 }
 
+.max-height {
+  max-height: calc(100vh - 120px);
+}
+
 #largeImgPanel {
   display: none;
   position: fixed;

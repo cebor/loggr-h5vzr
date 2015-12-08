@@ -31,7 +31,9 @@ angular.module('loggrioApp')
                               name + '/download/';
 
                 angular.forEach(data, function(imgObj){
-                  pics.push(imgUrl + imgObj.name);
+                  pics.push({
+                    thumb: imgUrl + imgObj.name,
+                    img: imgUrl + imgObj.name});
                 });
                 photo.photogallery.push({
                   name: name,
@@ -46,7 +48,7 @@ angular.module('loggrioApp')
      };
 
      loadShots();
-     
+
     /*
      * checks if photos from chosen shot have already been downloaded,
      * if yes deletes them immediately, if not asks user for further assistance
