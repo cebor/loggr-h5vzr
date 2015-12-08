@@ -103,3 +103,7 @@
 .fading.ng-show-remove.ng-show-remove-active {
   opacity:0;
 }
+
+.max-height {
+  max-height: calc(100vh - 120px);
+}

@@ -94,4 +94,7 @@ angular
       }
     });
 
+  })
+  .run(function ($rootScope, STREAM_URL){
+    $rootScope.STREAM_URL = STREAM_URL;
   });
