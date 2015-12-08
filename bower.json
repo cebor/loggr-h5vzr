@@ -11,7 +11,7 @@
     "highcharts-ng": "^0.0.11",
     "highcharts": "^4.1.9",
     "Sortable": "^1.4.2",
-    "ngGallery": "latest"
+    "ngGallery": "*"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.7"

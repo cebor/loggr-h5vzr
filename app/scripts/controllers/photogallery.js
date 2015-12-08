@@ -8,41 +8,58 @@
  * Controller of the loggrioApp
  */
 angular.module('loggrioApp')
-  .controller('PhotogalleryCtrl', function ($rootScope, $mdDialog, notify) {
+  .controller('PhotogalleryCtrl', function ($rootScope, $mdDialog, $http, notify, Container) {
     $rootScope.header = 'Photogallery';
 
     var photo = this;
+    photo.photogallery = [];
 
-    photo.photogallery = [{
-      date: '2015-10-31T03:13:57+00:00',
-      downloaded: true,
-      images: [
-        {thumb: 'images/photogallery/hallo1.png', img: 'images/photogallery/hallo1.png'},
-        {thumb: 'images/photogallery/hallo2.jpg', img: 'images/photogallery/hallo2.jpg'},
-        {thumb: 'images/photogallery/hallo3.jpg', img: 'images/photogallery/hallo3.jpg'},
-        {thumb: 'images/photogallery/hallo4.jpg', img: 'images/photogallery/hallo4.jpg'}
-      ]},{
-      date: '2015-11-02T15:50:57+00:00',
-      downloaded: false,
-      images: [
-        {thumb: 'images/photogallery/image1.jpg', img: 'images/photogallery/image1.jpg'},
-        {thumb: 'images/photogallery/image2.jpg', img: 'images/photogallery/image2.jpg'},
-        {thumb: 'images/photogallery/image3.jpg', img: 'images/photogallery/image3.jpg'},
-        {thumb: 'images/photogallery/image4.jpg', img: 'images/photogallery/image4.jpg'}
-      ]}
-    ];
+
+    /*
+     * retrieve photos from server and populates photogallery-array
+     */
+     var loadShots = function(){
+      photo.photogallery = [];
+       Container.getContainers().$promise.then(function(data){
+         angular.forEach(data, function(container){
+           var name = container.name;
+           var date = container.mtime;
+           var pics = [];
+           Container.getFiles({container:name}).$promise
+            .then(function(data){
+                var imgUrl = 'http://localhost:3000/api/containers/' +
+                              name + '/download/';
+
+                angular.forEach(data, function(imgObj){
+                  pics.push({
+                    thumb: imgUrl + imgObj.name,
+                    img: imgUrl + imgObj.name});
+                });
+                photo.photogallery.push({
+                  name: name,
+                  date: date,
+                  images: pics,
+                  downloaded: true,
+                  coverflow: {}
+                });
+              });
+         });
+       });
+     };
+
+     loadShots();
 
     /*
      * checks if photos from chosen shot have already been downloaded,
      * if yes deletes them immediately, if not asks user for further assistance
      */
-    this.deleteShots = function(timestamp, ev){
+    this.deleteShots = function(containerName, ev){
       // find chosen shot by timestamp
       angular.forEach(photo.photogallery, function(entry){
         // already downloaded, delete now
-        if(entry.date === timestamp && entry.downloaded) {
-          erasePhotosFromDB(timestamp);
-        } else if (entry.date === timestamp && !entry.downloaded) {
+        if(entry.name === containerName && entry.downloaded) {
+          erasePhotosFromDB(containerName);
+        } else if (entry.name === containerName && !entry.downloaded) {
           // modal to ask if rly delete
           $mdDialog.show(
               $mdDialog.confirm()
@@ -55,7 +72,7 @@ angular.module('loggrioApp')
                 .cancel('Keep photos')
           ).then(function() {
             // delete them
-            erasePhotosFromDB(timestamp);
+            erasePhotosFromDB(containerName);
           }, function() {
             // keep photos, do nothing
           });
@@ -66,23 +83,25 @@ angular.module('loggrioApp')
     /*
      * Retrieves all photos from chosen shot, zip archives and downloads them
      */
-    this.downloadShots = function(timestamp){
+    this.downloadShots = function(name){
       //TODO download photos from server as zip archive
       //TODO mark them as downloaded
-      console.log(timestamp);
+      console.log(name);
     };
 
     /*
      * Sends request to server to delete photos from DB persisently
      */
-    var erasePhotosFromDB = function(timestamp){
-      //TODO delete photos from DB
-      console.log(timestamp);
-      /*
-      //onSuccess
-      notify.showToast('Photos deleted sucessfully', 'check');
-      //onFail
-      notify.showToast('Photos could not be deleted', 'flash_on');
-      */
+    var erasePhotosFromDB = function(name){
+      Container.destroyContainer({container: name}).$promise.then(
+        function () {
+          //onSuccess
+          notify.showToast('Photos deleted sucessfully', 'check');
+        },function () {
+          //onFail
+          notify.showToast('Encountered error while deleting photos', 'flash_on');
+        }).then(function () {
+          loadShots();
+        });
     };
   });

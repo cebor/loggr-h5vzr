@@ -6,19 +6,22 @@
         <md-icon flex="5">camera</md-icon>
         <i style="padding-top:2%">Photos taken: {{shot.date | date:'dd/MM/yyyy@hh:mm'}}</i>
         <a flex/>
-        <md-button ng-click="photo.downloadShots(shot.date)">
+        <md-button ng-click="photo.downloadShots(shot.name)">
           <md-tooltip>Download Photos</md-tooltip>
           <md-icon>file_download</md-icon>
         </md-button>
-        <md-button ng-click="photo.deleteShots(shot.date, $event)">
+        <md-button ng-click="photo.deleteShots(shot.name, $event)">
           <md-tooltip>Delete Photos</md-tooltip>
           <md-icon>delete</md-icon>
         </md-button>
       </div>
-      <ng-gallery flex="60" images="shot.images"></ng-gallery>
+      <ng-gallery images="shot.images"></ng-gallery>
       <br ng-hide="$last"/>
       <md-divider ng-hide="$last"></md-divider>
-    </div>
+      </div>
+  </div>
+  <div id="largeImgPanel" layout="column" layout-align="center center" onclick="this.style.display='none'">
+    <img id="largeImg"/>
   </div>
 </md-card-content>
 </md-card>
