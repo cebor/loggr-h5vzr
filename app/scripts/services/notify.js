@@ -20,61 +20,25 @@ angular.module('loggrioApp')
       }
     }
 
-    this.toastReconnected = function () {
+    this.showToast = function (text, icon, hidedelay) {
+      hidedelay = (typeof hidedelay === 'undefined') ? 3000 : hidedelay;
       $mdToast.show({
-        template: '<md-toast>' +
-          ' <md-icon style="color:white">check</md-icon>' +
-          ' <span flex>Verbindung zur Messeinheit wiederhergestellt</span>' +
+        template: '<md-toast style="position: fixed">' +
+          ' <md-icon style="color: white">' + icon + '</md-icon>' +
+          ' <span flex>  ' + text + '</span>' +
           '</md-toast>',
-        hideDelay: 3000,
-        position: 'bottom left'
-      });
+        position: 'bottom left',
+        hideDelay: hidedelay,
+      }).finally(restoreDiconnectToast);
+    };
+
+    this.toastReconnected = function () {
+      self.showToast('Verbindung zur Messeinheit wiederhergestellt', 'check');
       toggled = false;
     };
 
     this.toastDisconnected = function () {
-      $mdToast.show({
-        template: '<md-toast>' +
-          ' <md-icon style="color:white">flash_on</md-icon>' +
-          ' <span flex>Verbindung zur Messeinheit unterbrochen</span>' +
-          '</md-toast>',
-        hideDelay: 0,
-        position: 'bottom left'
-      });
+      self.showToast('Verbindung zur Messeinheit unterbrochen', 'flash_on', 0);
       toggled = true;
     };
-
-    this.toastPaired = function () {
-      $mdToast.show({
-        template: '<md-toast>' +
-          ' <md-icon style="color: white">done</md-icon>' +
-          ' <span flex>  Pairing erfolgreich</span>' +
-          '</md-toast>',
-        position: 'bottom left',
-        hideDelay: 3000,
-      }).finally(restoreDiconnectToast);
-    };
-
-    this.toastPairingFailed = function () {
-      $mdToast.show({
-        template: '<md-toast>' +
-          ' <md-icon style="color: white">flash_on</md-icon>' +
-          ' <span flex>  Pairing fehlgeschlagen</span>' +
-          '</md-toast>',
-        position: 'bottom left',
-        hideDelay: 3000,
-      }).finally(restoreDiconnectToast);
-    };
-
-    this.toastPairingTimeOut = function () {
-      $mdToast.show({
-        template: '<md-toast>' +
-          ' <md-icon style="color: white">flash_on</md-icon>' +
-          ' <span flex>  Raspberry nicht verfügbar</span>' +
-          '</md-toast>',
-        position: 'bottom left',
-        hideDelay: 3000,
-      }).finally(restoreDiconnectToast);
-    };
-
   });

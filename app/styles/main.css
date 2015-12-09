@@ -9,9 +9,33 @@
   display: none !important;
 }
 
+.md-sidenav-backdrop, .md-sidenav-left{
+  position: fixed;
+}
+
+.toolbar-tools {
+  padding: 0px;
+}
+
 .toolbar-logo {
-  width: 48px;
   height: 48px;
+  width: 48px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.toolbar-header {
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+.sidenav-logo {
+  width: 120px;
+  height: 120px;
+}
+
+.sidenav-toolbar {
+  height: 240px;
 }
 
 .toolbar-item {
@@ -60,26 +84,6 @@
   margin-right: 0;
 }
 
-.fading.ng-hide-remove, .fading.ng-show-remove {
-  -webkit-transition:all linear 0.7s;
-  -moz-transition:all linear 0.7s;
-  -o-transition:all linear 0.7s;
-  transition:all linear 0.7s;
-}
-.fading.ng-hide-add.ng-hide-add-active,
-.fading.ng-hide-remove {
-  opacity:0;
-}
-.fading.ng-hide-add,
-.fading.ng-hide-remove.ng-hide-remove-active {
-  opacity:1;
-}
-
-.fading.ng-show-add.ng-show-add-active,
-.fading.ng-show-remove {
-  opacity:1;
-}
-.fading.ng-show-add,
-.fading.ng-show-remove.ng-show-remove-active {
-  opacity:0;
+.max-height {
+  max-height: calc(100vh - 120px);
 }
