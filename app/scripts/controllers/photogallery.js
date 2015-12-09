@@ -18,19 +18,20 @@ angular.module('loggrioApp')
     /*
      * retrieve photos from server and populates photogallery-array
      */
-     var loadShots = function(){
+     var loadShots = function () {
       photo.photogallery = [];
-       Container.getContainers().$promise.then(function(data){
-         angular.forEach(data, function(container){
+       Container.getContainers().$promise.then(function (data) {
+         data.reverse();
+         angular.forEach(data, function (container) {
            var name = container.name;
            var date = container.mtime;
            var pics = [];
            Container.getFiles({container:name}).$promise
-            .then(function(data){
+            .then(function (data) {
                 var imgUrl = 'http://localhost:3000/api/containers/' +
                               name + '/download/';
 
-                angular.forEach(data, function(imgObj){
+                angular.forEach(data, function (imgObj) {
                   pics.push({
                     thumb: imgUrl + imgObj.name,
                     img: imgUrl + imgObj.name});
@@ -53,9 +54,9 @@ angular.module('loggrioApp')
      * checks if photos from chosen shot have already been downloaded,
      * if yes deletes them immediately, if not asks user for further assistance
      */
-    this.deleteShots = function(containerName, ev){
+    this.deleteShots = function (containerName, ev) {
       // find chosen shot by timestamp
-      angular.forEach(photo.photogallery, function(entry){
+      angular.forEach(photo.photogallery, function (entry) {
         // already downloaded, delete now
         if(entry.name === containerName && entry.downloaded) {
           erasePhotosFromDB(containerName);
@@ -70,10 +71,10 @@ angular.module('loggrioApp')
                 .targetEvent(ev)
                 .ok('Delete anyway')
                 .cancel('Keep photos')
-          ).then(function() {
+          ).then(function () {
             // delete them
             erasePhotosFromDB(containerName);
-          }, function() {
+          }, function () {
             // keep photos, do nothing
           });
         }
@@ -83,7 +84,7 @@ angular.module('loggrioApp')
     /*
      * Retrieves all photos from chosen shot, zip archives and downloads them
      */
-    this.downloadShots = function(name){
+    this.downloadShots = function (name) {
       //TODO download photos from server as zip archive
       //TODO mark them as downloaded
       console.log(name);
@@ -92,7 +93,7 @@ angular.module('loggrioApp')
     /*
      * Sends request to server to delete photos from DB persisently
      */
-    var erasePhotosFromDB = function(name){
+    var erasePhotosFromDB = function (name) {
       Container.destroyContainer({container: name}).$promise.then(
         function () {
           //onSuccess
