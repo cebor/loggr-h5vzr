@@ -9,7 +9,7 @@
     "angular-resource": "^1.4.7",
     "angular-material": "^1.0.0",
     "highcharts-ng": "^0.0.11",
-    "highcharts": "^4.1.9",
+    "highcharts-release": "^4.1.9",
     "Sortable": "^1.4.2",
     "ngGallery": "*"
   },
