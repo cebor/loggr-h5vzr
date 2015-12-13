@@ -1,5 +1,6 @@
 <md-card>
   <md-card-content>
+    <span ng-show="!photo.photogallery.length">No Pics!</span>
     <div layout="column" ng-repeat="shot in photo.photogallery">
       <br flex="5">
       <div layout="row">
