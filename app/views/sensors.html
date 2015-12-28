@@ -47,8 +47,8 @@
     <md-card-content ng-show="chart.viewToggled" class="fading range-button" layout-align="center start">
       <div layout="row">
         <div flex></div>
-        <md-button ng-click="sensors.toggleChartView($index)">
-          <md-icon md-svg-icon="chart_line" aria-label="chart-line"></md-icon>
+        <md-button ng-click="sensors.toggleChartView($index)" aria-label="chart-line">
+          <md-icon>timeline</md-icon>
         </md-button>
       </div>
       <highchart id="{{$index}}" config="chart.average"></highchart>
