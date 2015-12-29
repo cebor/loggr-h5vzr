@@ -9,18 +9,19 @@
 angular.module('loggrioApp')
   .directive('matchTo', function () {
     return {
-      require: 'ngModel',
+      require: '?ngModel',
       scope: {
         otherModelValue: '=matchTo'
       },
-      link: function (scope, element, attributes, ngModelCtrl) {
+      link: function (scope, elm, attr, ctrl) {
+        if (!ctrl) return;
 
-        ngModelCtrl.$validators.matchTo = function (modelValue) {
+        ctrl.$validators.matchTo = function (modelValue) {
           return modelValue === scope.otherModelValue;
         };
-
-        scope.$watch('otherModelValue', function () {
-          ngModelCtrl.$validate();
+        
+        scope.$watch('otherModelValue', function() {
+          ctrl.$validate();
         });
       }
     };
