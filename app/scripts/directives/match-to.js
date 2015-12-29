@@ -19,8 +19,8 @@ angular.module('loggrioApp')
         ctrl.$validators.matchTo = function (modelValue) {
           return modelValue === scope.otherModelValue;
         };
-        
-        scope.$watch('otherModelValue', function() {
+
+        scope.$watch('otherModelValue', function () {
           ctrl.$validate();
         });
       }
