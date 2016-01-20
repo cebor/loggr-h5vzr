@@ -9,6 +9,14 @@
   z-index: 1;
 }
 
+@media screen and (max-width: 600px){
+  [scroll-picture] {
+    width:120%;
+    padding-bottom: 50%;
+    background-position:120% 60%;
+  }
+}
+
 [scroll] {
   position:fixed;
   top:0;

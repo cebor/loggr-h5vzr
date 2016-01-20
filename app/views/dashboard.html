@@ -1,32 +1,89 @@
 <div layout="column">
-  <div layout="row">
-    <md-card flex="40">
-      <md-card-content>
-      </p>Sensors</p>
-    </md-card-content>
-  </md-card>
-  <md-card flex="60">
-    <md-card-content>
-    </p>Live-Stream</p>
-  </md-card-content>
-</md-card>
-</div>
-<div layout="row">
-  <md-card flex="60">
-    <md-card-content ng-controller="PhotogalleryCtrl as photogallery">
-    </p>Photo-Gallery</p>
-    <div ng-repeat="shot in photogallery.photogallery">
-      <br flex="5">
-      <div layout="row">
-        <md-icon flex>camera</md-icon>
-        <i style="padding-top:3%">{{shot.date | date:'dd/MM/yyyy @hh:mm'}}</i>
-        <a flex/>
-        <ng-gallery flex="55" images="shot.images"></ng-gallery>
-      </div>
-      <br ng-hide="$last"/>
-      <md-divider ng-hide="$last"></md-divider>
+    <div layout="row">
+        
+        <md-card flex="40">
+            <md-card-content>
+                <!--<img layout-fill class="max-height" src="{{STREAM_URL}}">-->
+                <img layout-fill class="max-height" src="http://medien.merian.de/fotostrecke/2012-05/artikel-matterhorn.jpg">
+            </md-card-content>
+        </md-card>
+        
+        <md-card flex="60" layout-align="center center">
+            <md-card-content ng-controller="PhotogalleryCtrl as photogallery">
+                <div ng-repeat="shot in photogallery.photogallery">
+                    <br flex="5">
+                    <div layout="row">
+                        <md-icon flex>camera</md-icon>
+                        <i style="padding-top:3%">{{shot.date | date:'dd/MM/yyyy @hh:mm'}}</i>
+                        <a flex/>
+                        <ng-gallery flex="55" images="shot.images"></ng-gallery>
+                    </div>
+                    <br ng-hide="$last" />
+                    <md-divider ng-hide="$last"></md-divider>
+                </div>
+            </md-card-content>
+        </md-card>
+        
     </div>
-  </md-card-content>
-</md-card>
+    <div layout="row">
+        
+      <md-card flex="100" ng-Controller="SensorsCtrl as sensors">
+            <!-- front side -->
+            <md-card-content ng-hide="sensors.charts[0].viewToggled" class="fading range-button" layout-align="center start">
+                <div layout="row">
+                    <md-button ng-click="sensors.zoomNavigation.zoomIn(0)">
+                        <md-icon>zoom_in</md-icon>
+                    </md-button>
+                    <md-button ng-click="sensors.zoomNavigation.zoomOut(0)">
+                        <md-icon>zoom_out</md-icon>
+                    </md-button>
+                    <md-button ng-repeat="range in sensors.ranges" ng-click="sensors.zoomNavigation.selectRange(0, range.value)">
+                        {{range.name}}
+                    </md-button>
+                    <md-button ng-click="sensors.zoomNavigation.resetZoom(0)">
+                        <md-icon>youtube_searched_for</md-icon>
+                    </md-button>
+                    <md-button ng-click="sensors.zoomNavigation.navigateLeft(0)">
+                        <md-icon>chevron_left</md-icon>
+                    </md-button>
+                    <md-button ng-click="sensors.zoomNavigation.navigateRight(0)">
+                        <md-icon>chevron_right</md-icon>
+                    </md-button>
+                    <div flex></div>
+                    <md-menu style="padding: 0 0 !important;">
+                        <md-button aria-label="Contextmenu" ng-click="$mdOpenMenu()">
+                            <md-icon md-menu-origin>file_download</md-icon>
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item ng-repeat="menuItem in sensors.contextMenu">
+                                <md-button ng-click="menuItem.action(0)">
+                                    <md-icon md-menu-align-target>{{menuItem.icon}}</md-icon>
+                                    {{menuItem.label}}
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                    <md-button ng-click="sensors.toggleChartView(0)">
+                        <md-icon>equalizer</md-icon>
+                    </md-button>
+                </div>
+                <highchart id="0" config="sensors.charts[0].default"></highchart>
+            </md-card-content>
+            <!-- front side end -->
+            <!-- back side -->
+            <md-card-content ng-show="sensors.charts[0].viewToggled" class="fading range-button" layout-align="center start">
+                <div layout="row">
+                    <div flex></div>
+                    <md-button ng-click="sensors.toggleChartView(0)" aria-label="charts-line">
+                        <md-icon>timeline</md-icon>
+                    </md-button>
+                </div>
+                <highchart id="0" config="sensors.charts[0].average"></highchart>
+            </md-card-content>
+            <!-- back side end -->
+        </md-card>
+        
+    </div>
 </div>
-</div>
+
+<div ng-controller="DashboardCtrl"></div>

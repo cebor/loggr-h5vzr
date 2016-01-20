@@ -37,6 +37,7 @@ angular.module('loggrioApp')
         headerRect = header[0].getBoundingClientRect();
         
         picture = angular.element('[scroll-picture]');
+        headerRect = picture[0].getBoundingClientRect();
         picture.css('background-image', 'url(' + attrs.imgUrl +')');
         
         logo = angular.element('.' + attrs.logoClass);
@@ -51,8 +52,8 @@ angular.module('loggrioApp')
         body.css('height', $window.innerHeight + headerRect.height - defaultToolbarHeight);
       }
 
-      function update(Rect) {
-        var tmpHeight = Rect.bottom - headerRect.top;
+      function update(rect) {
+        var tmpHeight = rect.bottom - headerRect.top;
 
         /* toolbar height */
         if ((tmpHeight) > defaultToolbarHeight) {
@@ -62,9 +63,9 @@ angular.module('loggrioApp')
         }
 
         /* transparancy */
-        element.css('background-color','rgba('+toolbarColor[0]+','+toolbarColor[1]+','+toolbarColor[2]+','+(1-ratio(Rect))+')');
+        element.css('background-color','rgba('+toolbarColor[0]+','+toolbarColor[1]+','+toolbarColor[2]+','+(1-ratio(rect))+')');
         /* shadow */
-        element.css('box-shadow', '0 '+(Rect.height*3/4)+'px '+(Rect.height/2)+'px -'+(Rect.height/2)+'px rgba(0,0,0,'+ratio(Rect)/2+') inset');
+        element.css('box-shadow', '0 '+(rect.height*3/4)+'px '+(rect.height/2)+'px -'+(rect.height/2)+'px rgba(0,0,0,'+ratio(rect)/2+') inset');
 
         /* shrink logo */
         if (tmpHeight <= heightToShrink && logo.hasClass('logo-size')) {
@@ -102,9 +103,10 @@ angular.module('loggrioApp')
       });
 
       /* Resize event listener */
-      angular.element($window).bind('resize',function () {
-        headerRect = header[0].getBoundingClientRect();
-        update(headerRect);
+      angular.element($window).bind('resize', function () {
+        var tmpHeaderRect = header[0].getBoundingClientRect();
+        body.css('height', $window.innerHeight + tmpHeaderRect.height - defaultToolbarHeight);
+        update(tmpHeaderRect);
         scope.$apply();
       });
 

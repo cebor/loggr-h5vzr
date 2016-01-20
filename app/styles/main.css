@@ -17,11 +17,10 @@
   padding: 0px;
 }
 
-.toolbar-logo {
+.toolbar-logo, .sidenav-logo{
   height: 48px;
   width: 48px;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin: 16px;
 }
 
 .toolbar-header {
@@ -29,13 +28,13 @@
   margin-right: 14px;
 }
 
-.sidenav-logo {
-  width: 120px;
-  height: 120px;
+.sidenav-toolbar {
+  height: 64px;
 }
 
-.sidenav-toolbar {
-  height: 240px;
+.md-sidenav-left {
+    min-width: 280px;
+    max-width: 280px;
 }
 
 .toolbar-item {

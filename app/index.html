@@ -22,9 +22,9 @@
 
     <!-- Sidenav -->
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-      <md-toolbar class="sidenav-toolbar" layout="column" layout-align="center center">
-        <img src="images/logo.png" alt="Logo" class="toolbar-item sidenav-logo">
-        <h2 class="toolbar-item">loggr.io</h2>
+      <md-toolbar class="sidenav-toolbar" layout="row" layout-align="start center">
+        <img src="images/logo.png" alt="Logo" class="sidenav-logo toolbar-item">
+        <p hide-sm class="md-subhead toolbar-item">loggr.io</p>
       </md-toolbar>
       <md-content ng-Controller="SidenavCtrl as sidenav">
         <md-list>
@@ -39,7 +39,7 @@
 
     <div layout="column" flex>
 
-        <md-toolbar title-class="toolbar-header" ng-controller="ToolbarCtrl as toolbar">
+        <md-toolbar scroll img-url="../images/header-picture.png" logo-class="toolbar-logo" title-class="toolbar-header" ng-controller="ToolbarCtrl as toolbar">
           <div class="md-toolbar-tools toolbar-tools" layout="row">
 
             <div flex="15" flex-md="10" flex-sm="auto" layout="row" layout-align="start center">
