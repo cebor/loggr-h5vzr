@@ -5,6 +5,10 @@
   padding: 0.2em 0;
 }
 
+::-webkit-scrollbar { 
+    display: none; 
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
