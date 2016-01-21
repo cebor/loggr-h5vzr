@@ -13,15 +13,15 @@
 </div>
 <div layout="row">
   <md-card flex="60">
-    <md-card-content ng-controller="PhotogalleryCtrl as photogallery">
+    <md-card-content ng-controller="PhotogalleryCtrl as photo">
     </p>Photo-Gallery</p>
-    <div ng-repeat="shot in photogallery.photogallery">
+    <div>
       <br flex="5">
       <div layout="row">
         <md-icon flex>camera</md-icon>
-        <i style="padding-top:3%">{{shot.date | date:'dd/MM/yyyy @hh:mm'}}</i>
+        <i style="padding-top:3%">{{photo.photogallery[0].date | date:'dd/MM/yyyy @hh:mm'}}</i>
         <a flex/>
-        <ng-gallery flex="55" images="shot.images"></ng-gallery>
+        <ng-gallery flex="55" images="photo.photogallery[0].images"></ng-gallery>
       </div>
       <br ng-hide="$last"/>
       <md-divider ng-hide="$last"></md-divider>
