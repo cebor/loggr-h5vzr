@@ -1,33 +1,34 @@
 <div layout="column">
     <div layout="row">
-        
+
         <md-card flex="40">
             <md-card-content>
                 <!--<img layout-fill class="max-height" src="{{STREAM_URL}}">-->
                 <img layout-fill class="max-height" src="http://medien.merian.de/fotostrecke/2012-05/artikel-matterhorn.jpg">
             </md-card-content>
         </md-card>
-        
-        <md-card flex="60" layout-align="center center">
-            <md-card-content ng-controller="PhotogalleryCtrl as photogallery">
-                <div ng-repeat="shot in photogallery.photogallery">
+
+        <md-card flex="60">
+            <md-card-content ng-controller="PhotogalleryCtrl as photo">
+                <span ng-show="!photo.photogallery.length">No Pics!</span>
+                <div ng-hide="!photo.photogallery.length">
                     <br flex="5">
                     <div layout="row">
                         <md-icon flex>camera</md-icon>
-                        <i style="padding-top:3%">{{shot.date | date:'dd/MM/yyyy @hh:mm'}}</i>
+                        <i style="padding-top:3%">{{photo.photogallery[0].date | date:'dd/MM/yyyy @hh:mm'}}</i>
                         <a flex/>
-                        <ng-gallery flex="55" images="shot.images"></ng-gallery>
+                        <ng-gallery flex="55" images="photo.photogallery[0].images"></ng-gallery>
                     </div>
                     <br ng-hide="$last" />
                     <md-divider ng-hide="$last"></md-divider>
                 </div>
             </md-card-content>
         </md-card>
-        
+
     </div>
     <div layout="row">
-        
-      <md-card flex="100" ng-Controller="SensorsCtrl as sensors">
+
+        <md-card flex="100" ng-Controller="SensorsCtrl as sensors">
             <!-- front side -->
             <md-card-content ng-hide="sensors.charts[0].viewToggled" class="fading range-button" layout-align="center start">
                 <div layout="row">
@@ -82,7 +83,7 @@
             </md-card-content>
             <!-- back side end -->
         </md-card>
-        
+
     </div>
 </div>
 
