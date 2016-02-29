@@ -35,7 +35,6 @@ angular.module('loggrioApp')
     this.register = function () {
       self.registerToggled = true;
       Customer.create(self.loginCredentials, function () {
-        self.retypePassword = '';
         self.login();
       }, function () {
         self.errors.registerFailed = true;

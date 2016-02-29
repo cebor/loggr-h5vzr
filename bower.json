@@ -2,20 +2,23 @@
   "name": "loggrio",
   "version": "0.1.0",
   "dependencies": {
-    "jquery": "^2.2.0",
-    "angular": "^1.4.9",
-    "angular-messages": "^1.4.9",
-    "angular-route": "^1.4.9",
-    "angular-resource": "^1.4.9",
-    "angular-material": "^1.0.3",
+    "jquery": "^2.2.1",
+    "angular": "^1.5.0",
+    "angular-messages": "^1.5.0",
+    "angular-route": "^1.5.0",
+    "angular-resource": "^1.5.0",
+    "angular-material": "^1.0.5",
     "highcharts-ng": "^0.0.11",
-    "highcharts-release": "^4.2.1",
+    "highcharts-release": "^4.2.3",
     "Sortable": "^1.4.2",
     "ngGallery": "*"
   },
   "devDependencies": {
-    "angular-mocks": "^1.4.9"
+    "angular-mocks": "^1.5.0"
   },
   "appPath": "app",
-  "moduleName": "loggrioApp"
+  "moduleName": "loggrioApp",
+  "resolutions": {
+    "angular": "^1.5.0"
+  }
 }
