@@ -8,7 +8,7 @@
  * Controller of the loggrioApp
  */
 angular.module('loggrioApp')
-  .controller('PhotogalleryCtrl', function ($rootScope, $location, $mdDialog, $http, notify, Container) {
+  .controller('PhotogalleryCtrl', function ($rootScope, $location, $mdDialog, $http, notify, Container, Customer) {
 
     if (!Customer.isAuthenticated()) {
       $location.path('/login');
