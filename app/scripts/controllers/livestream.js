@@ -8,7 +8,7 @@
  * Controller of the loggrioApp
  */
 angular.module('loggrioApp')
-  .controller('LivestreamCtrl', function ($rootScope) {
+  .controller('LivestreamCtrl', function ($rootScope, $location) {
     if (!Customer.isAuthenticated()) {
       $location.path('/login');
     } else {
