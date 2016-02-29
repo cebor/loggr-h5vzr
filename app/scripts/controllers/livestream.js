@@ -9,5 +9,10 @@
  */
 angular.module('loggrioApp')
   .controller('LivestreamCtrl', function ($rootScope) {
-    $rootScope.header = 'Livestream';
+    if (!Customer.isAuthenticated()) {
+      $location.path('/login');
+    } else {
+      $rootScope.header = 'Livestream';
+      $rootScope.user = Customer.getCurrent();
+    }
   });

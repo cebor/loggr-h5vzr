@@ -9,11 +9,16 @@
  */
 angular.module('loggrioApp')
   .controller('PhotogalleryCtrl', function ($rootScope, $mdDialog, $http, notify, Container) {
-    $rootScope.header = 'Photogallery';
+
+    if (!Customer.isAuthenticated()) {
+      $location.path('/login');
+    } else {
+      $rootScope.header = 'Photogallery';
+      $rootScope.user = Customer.getCurrent();
+    }
 
     var photo = this;
     photo.photogallery = [];
-
 
     /*
      * retrieve photos from server and populates photogallery-array

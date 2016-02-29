@@ -9,11 +9,11 @@
  */
 angular.module('loggrioApp')
   .controller('SensorsCtrl', function ($rootScope, $location, Customer, chartHandler, chartMenu, zoom) {
-    $rootScope.header = 'Sensors';
     // THIS FIX IS DEDICATED TO MARKO G.
     if (!Customer.isAuthenticated()) {
       $location.path('/login');
     } else {
+      $rootScope.header = 'Sensors';
       $rootScope.user = Customer.getCurrent();
       chartHandler.goLive();
     }

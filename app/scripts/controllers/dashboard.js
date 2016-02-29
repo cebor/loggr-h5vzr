@@ -9,5 +9,10 @@
  */
 angular.module('loggrioApp')
   .controller('DashboardCtrl', function ($rootScope) {
-    $rootScope.header = 'Dashboard';
+    if (!Customer.isAuthenticated()) {
+      $location.path('/login');
+    } else {
+      $rootScope.header = 'Dashboard';
+      $rootScope.user = Customer.getCurrent();
+    }
   });
